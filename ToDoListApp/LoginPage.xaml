@@ -4,9 +4,14 @@
              x:Class="ToDoListApp.LoginPage"
              Title="LoginPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Entry x:Name="Username"
+       Placeholder="Enter Username"
+       TextChanged="OnEntryTextChanged"
+       Completed="OnEntryCompleted" />
+
+        <Entry x:Name="Password"
+    Placeholder="Enter Password"
+    TextChanged="OnEntryTextChanged"
+    Completed="OnEntryCompleted" />
     </VerticalStackLayout>
 </ContentPage>
