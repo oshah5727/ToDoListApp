@@ -1,6 +1,6 @@
 using Microsoft.Maui.Controls;
 
-namespace LoginPage
+namespace ToDoListApp
 {
     public partial class LoginPage : ContentPage
     {
