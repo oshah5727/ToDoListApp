@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ToDoListApp.Resources;
 
 namespace ToDoListApp
 {
@@ -14,7 +15,7 @@ namespace ToDoListApp
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+          
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
