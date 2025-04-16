@@ -10,4 +10,4 @@
 
         <Button Text="Login" Clicked="OnLoginClicked"/>
     </VerticalStackLayout>
-</ContentPage>
+</ContentPage> 
