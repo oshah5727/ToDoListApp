@@ -1,4 +1,5 @@
 using Microsoft.Maui.Controls;
+using ToDoListApp.Views;
 
 namespace ToDoListApp
 {
@@ -17,6 +18,8 @@ namespace ToDoListApp
             if (username == "admin" && password == "password123")
             {
                 DisplayAlert("Login Successful", "Welcome!", "OK");
+                // Navigate to the main page of the app
+                Application.Current.MainPage = new NavigationPage(new DashboardPage());
             }
             else
             {

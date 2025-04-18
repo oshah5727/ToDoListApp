@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ToDoListApp.Models
 {
-    class ToDoItem
+    public class ToDoItem
     {
-        string Name { get; set; }
-        string Description { get; set; }
-        string DueBy { get; set; }
-        Boolean IsComplete { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string DueBy { get; set; }
+        public bool IsComplete { get; set; }
 
     }
 }
