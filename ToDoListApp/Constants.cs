@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoListApp.ViewModels
+namespace ToDoListApp
 {
-    class ListPageViewModel
+    class Constants
     {
+        public const string DatabaseFilename = "TDData.db3";
 
     }
 }
