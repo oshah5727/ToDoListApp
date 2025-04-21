@@ -16,6 +16,15 @@ namespace ToDoListApp
             _connection = new SQLiteAsyncConnection(Path.Combine(FileSystem.AppDataDirectory, DB_NAME));
             _connection.CreateTableAsync<TDItem>();
         }
+
+        public async Task<List<TDItem>> GetTDItemsAsync()
+        { return await _connection.Table<TDItem>().ToListAsync(); }
+
+        public async Task Create(TDItem tditem)
+        { await _connection.InsertAsync(tditem); }
+
+        public async Task Update(TDItem tditem)
+        { await _connection.UpdateAsync(tditem); }
     }
 }
 
