@@ -127,9 +127,9 @@
                             </CollectionView.ItemTemplate>
                         </CollectionView>
 
-                        <Button Text="View All Tasks" 
+                        <!--<Button Text="View All Tasks" 
                                 Clicked="OnViewAllTasksClicked"
-                                HorizontalOptions="End" />
+                                HorizontalOptions="End" />-->
                     </VerticalStackLayout>
                 </Frame>
 
@@ -169,18 +169,5 @@
         </ScrollView>
 
         <!-- Floating Action Button for adding new tasks -->
-        <Button Text="+"
-                FontSize="24"
-                FontAttributes="Bold"
-                WidthRequest="60"
-                HeightRequest="60"
-                CornerRadius="30"
-                BackgroundColor="{StaticResource Primary}"
-                TextColor="White"
-                HorizontalOptions="End"
-                VerticalOptions="End"
-                Margin="0,0,25,25"
-                Clicked="OnAddNewTaskClicked"
-                Grid.Row="1" />
     </Grid>
 </ContentPage>

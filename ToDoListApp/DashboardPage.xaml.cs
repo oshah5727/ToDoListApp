@@ -1,14 +1,10 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
 using ToDoListApp.Models;
 using ToDoListApp.Services;
 namespace ToDoListApp.Views
-    
+
 {
     public partial class DashboardPage : ContentPage
     {
@@ -27,10 +23,10 @@ namespace ToDoListApp.Views
             await _viewModel.LoadTasksAsync();
         }
 
-        private async void OnAccountClicked(object sender, EventArgs e)
+        private void OnAccountClicked(object sender, EventArgs e)
         {
             // Navigate to account page
-            await Shell.Current.GoToAsync("//account");
+            Application.Current.MainPage = new NavigationPage(new AccountPage());
         }
 
         private async void OnSignOutClicked(object sender, EventArgs e)
@@ -39,11 +35,9 @@ namespace ToDoListApp.Views
 
             if (confirm)
             {
-                // Implement sign out logic here
-                // For example: clear user session, preferences, etc.
-
+        
                 // Navigate to login page
-                await Shell.Current.GoToAsync("//login");
+                Application.Current.MainPage = new NavigationPage(new LoginPage());
             }
         }
 
@@ -64,9 +58,9 @@ namespace ToDoListApp.Views
 
                 switch (action)
                 {
-                    case "Edit":
-                        await Shell.Current.GoToAsync($"//edit?name={taskName}");
-                        break;
+                    //case "Edit":
+                    //    await Navigation.PushAsync(new EditTaskPage(taskName));
+                    //    break;
                     case "Delete":
                         bool confirm = await DisplayAlert("Delete Task", "Are you sure you want to delete this task?", "Yes", "No");
                         if (confirm)
@@ -78,17 +72,6 @@ namespace ToDoListApp.Views
             }
         }
 
-        private async void OnViewAllTasksClicked(object sender, EventArgs e)
-        {
-            // Navigate to all tasks page
-            await Shell.Current.GoToAsync("//tasks");
-        }
-
-        private async void OnAddNewTaskClicked(object sender, EventArgs e)
-        {
-            // Navigate to add new task page
-            await Shell.Current.GoToAsync("//add");
-        }
     }
 
     public class DashboardViewModel : BindableObject
