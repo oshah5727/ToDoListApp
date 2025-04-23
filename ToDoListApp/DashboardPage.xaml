@@ -4,27 +4,12 @@
              x:Class="ToDoListApp.Views.DashboardPage"
              Title="Dashboard">
 
-    <!-- Top Navigation Bar -->
-    <Shell.TitleView>
-        <Grid ColumnDefinitions="*, Auto, Auto">
-            <Label Text="Todo Dashboard" 
-                   FontSize="18" 
-                   FontAttributes="Bold"
-                   VerticalOptions="Center" />
-
-            <Button Grid.Column="1"
+    <Grid RowDefinitions="Auto, *">
+        <!-- Quick Add Section -->
+        <Button Grid.Column="1"
                     Text="Account"
                     Margin="0,0,10,0"
                     Clicked="OnAccountClicked" />
-
-            <Button Grid.Column="2"
-                    Text="Sign Out"
-                    Clicked="OnSignOutClicked" />
-        </Grid>
-    </Shell.TitleView>
-
-    <Grid RowDefinitions="Auto, *">
-        <!-- Quick Add Section -->
         <Frame Grid.Row="0" 
                Margin="15"
                Padding="15"
