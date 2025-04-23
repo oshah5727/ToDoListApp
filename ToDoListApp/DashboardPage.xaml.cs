@@ -23,7 +23,7 @@ namespace ToDoListApp.Views
             await _viewModel.LoadTasksAsync();
         }
 
-        private void OnAccountClicked(object sender, EventArgs e)
+        private async void OnAccountClicked(object sender, EventArgs e)
         {
             // Navigate to account page
             await Navigation.PushAsync(new AccountPage());
