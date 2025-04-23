@@ -5,7 +5,7 @@
              Title="Dashboard">
 
     <!-- Top Navigation Bar -->
-    <Shell.TitleView>
+
         <Grid ColumnDefinitions="*, Auto, Auto">
             <Label Text="Todo Dashboard" 
                    FontSize="18" 
@@ -21,7 +21,6 @@
                     Text="Sign Out"
                     Clicked="OnSignOutClicked" />
         </Grid>
-    </Shell.TitleView>
 
     <Grid RowDefinitions="Auto, *">
         <!-- Quick Add Section -->
