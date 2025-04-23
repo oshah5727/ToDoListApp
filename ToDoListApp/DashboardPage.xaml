@@ -6,21 +6,21 @@
 
     <!-- Top Navigation Bar -->
 
-        <Grid ColumnDefinitions="*, Auto, Auto">
-            <Label Text="Todo Dashboard" 
+    <Grid ColumnDefinitions="*, Auto, Auto">
+        <Label Text="Todo Dashboard" 
                    FontSize="18" 
                    FontAttributes="Bold"
                    VerticalOptions="Center" />
 
-            <Button Grid.Column="1"
+        <Button Grid.Column="1"
                     Text="Account"
                     Margin="0,0,10,0"
                     Clicked="OnAccountClicked" />
 
-            <Button Grid.Column="2"
+        <Button Grid.Column="2"
                     Text="Sign Out"
                     Clicked="OnSignOutClicked" />
-        </Grid>
+    </Grid>
 
     <Grid RowDefinitions="Auto, *">
         <!-- Quick Add Section -->
