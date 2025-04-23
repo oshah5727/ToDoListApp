@@ -6,4 +6,16 @@ public partial class AccountPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void OnSaveClicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void OnDeleteClicked(object sender, EventArgs e)
+    {
+
+    }
+
+    
 }
