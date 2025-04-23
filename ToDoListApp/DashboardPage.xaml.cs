@@ -17,6 +17,8 @@ namespace ToDoListApp.Views
         public DashboardPage()
         {
             InitializeComponent();
+            List<TDItem> CurrentTDList = new List<TDItem>();
+            //CurrentTDList = LocalDBService.
             _viewModel = new DashboardViewModel();
             BindingContext = _viewModel;
         }

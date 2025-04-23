@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace ToDoListApp
 {
     class LocalDBService
     {
-        private const string DB_NAME = "demo_local_db.db3";
+        private const string DB_NAME = "TDListDatabase.db3";
         private readonly SQLiteAsyncConnection _connection;
         public LocalDBService()
         {
@@ -25,6 +26,9 @@ namespace ToDoListApp
 
         public async Task Update(TDItem tditem)
         { await _connection.UpdateAsync(tditem); }
+
+        public async Task Delete(TDItem tditem)
+        { await _connection.DeleteAsync(tditem); }
     }
 }
 
