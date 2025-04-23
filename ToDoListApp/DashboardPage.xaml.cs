@@ -30,7 +30,7 @@ namespace ToDoListApp.Views
         private async void OnAccountClicked(object sender, EventArgs e)
         {
             // Navigate to account page
-            await Shell.Current.GoToAsync("//account");
+            await Navigation.PushAsync(new AccountPage());
         }
 
         private async void OnSignOutClicked(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace ToDoListApp.Views
                 // For example: clear user session, preferences, etc.
 
                 // Navigate to login page
-                await Shell.Current.GoToAsync("//login");
+                await Navigation.PushAsync(new LoginPage());
             }
         }
 

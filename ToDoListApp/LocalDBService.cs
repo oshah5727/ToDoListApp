@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using ToDoListApp.Models;
+
 namespace ToDoListApp
 {
     class LocalDBService
@@ -18,13 +20,37 @@ namespace ToDoListApp
         }
 
         public async Task<List<TDItem>> GetTDItemsAsync()
-        { return await _connection.Table<TDItem>().ToListAsync(); }
+        { 
+            return await _connection.Table<TDItem>().ToListAsync(); 
+        }
 
         public async Task Create(TDItem tditem)
-        { await _connection.InsertAsync(tditem); }
+        { 
+            await _connection.InsertAsync(tditem); 
+        }
 
         public async Task Update(TDItem tditem)
-        { await _connection.UpdateAsync(tditem); }
+        {
+            await _connection.UpdateAsync(tditem);
+        }
+        public async Task<User> GetUserAsync()
+        {
+            return await _connection.Table<User>().FirstOrDefaultAsync(); 
+        }
+
+        public async Task SaveUserAsync(User user)
+        {
+            if (user.ID != 0)
+                await _connection.UpdateAsync(user);
+            else
+                await _connection.InsertAsync(user);
+        }
+
+        public async Task DeleteUserAsync(User user)
+        {
+            await _connection.DeleteAsync(user);
+        }
     }
+
 }
 
