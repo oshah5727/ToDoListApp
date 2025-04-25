@@ -150,8 +150,11 @@
                         </VerticalStackLayout>
                     </Grid>
                 </Frame>
+                <Button Text="Settings" Clicked="Settings_Clicked"></Button>
             </VerticalStackLayout>
-        </ScrollView>
+            
+           
+        </ScrollView> 
 
         <!-- Floating Action Button for adding new tasks -->
     </Grid>

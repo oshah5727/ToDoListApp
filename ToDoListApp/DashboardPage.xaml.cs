@@ -8,13 +8,16 @@ namespace ToDoListApp.Views
 {
     public partial class DashboardPage : ContentPage
     {
+        private readonly LocalDBService _localDBService;
+
         private DashboardViewModel _viewModel;
 
         public DashboardPage()
         {
             InitializeComponent();
             List<TDItem> CurrentTDList = new List<TDItem>();
-            //CurrentTDList = LocalDBService.
+              
+            
             _viewModel = new DashboardViewModel();
             BindingContext = _viewModel;
         }
@@ -29,6 +32,12 @@ namespace ToDoListApp.Views
         {
             // Navigate to account page
             await Navigation.PushAsync(new AccountPage());
+        }
+
+        private async void Settings_Clicked(object sender, EventArgs e)
+        {
+            //Navigate to settings page
+            await Navigation.PushAsync(new SettingsPage());
         }
 
         private async void OnSignOutClicked(object sender, EventArgs e)
