@@ -3,10 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoListApp.AccountPage"
              Title="AccountPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+ 
+            <Label Text="Account Information" FontSize="24" HorizontalOptions="Center" />
+
+            <Entry x:Name="UsernameEntry" Placeholder="Username" />
+            <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" />
+            <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
+
+            <Button Text="Save" Clicked="OnSaveClicked" />
+            <Button Text="Delete Account" Clicked="OnDeleteClicked" BackgroundColor="Red" TextColor="White"/>
+
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
