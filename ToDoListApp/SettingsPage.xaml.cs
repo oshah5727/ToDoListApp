@@ -14,8 +14,9 @@ public partial class SettingsPage : ContentPage
 
     private void OnModeChanged(object sender, ToggledEventArgs e)
     {
-		if (SettingManagementService.IsDarkMode) { SettingManagementService.IsDarkMode = false; }
-		if (!SettingManagementService.IsDarkMode) { SettingManagementService.IsDarkMode = true; }
+		if (Application.Current.RequestedTheme.Equals(AppTheme.Light))
+		{ Application.Current.UserAppTheme = AppTheme.Dark; }
+		else { Application.Current.UserAppTheme = AppTheme.Light; }
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
