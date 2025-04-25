@@ -7,5 +7,6 @@
         <Label 
             Text= "Enable Dark Mode"/>
         <Switch Toggled="OnModeChanged"/>
+        <Button Text="Back To Dashboard" Clicked="Button_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>
