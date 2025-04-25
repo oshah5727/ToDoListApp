@@ -5,8 +5,8 @@
              Title="Settings ">
     <VerticalStackLayout>
         <Label 
-            Text= "Enable Dark Mode"/>
-        <Switch Toggled="OnModeChanged"/>
+            Text= "Change Light/Dark Mode"/>
+        <Button Text="Change Theme..." Clicked="OnModeChanged"/>
         <Button Text="Back To Dashboard" Clicked="Button_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

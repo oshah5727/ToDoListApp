@@ -12,7 +12,7 @@ public partial class SettingsPage : ContentPage
 	
 	}
 
-    private void OnModeChanged(object sender, ToggledEventArgs e)
+    private void OnModeChanged(object sender, EventArgs e)
     {
 		if (Application.Current.RequestedTheme.Equals(AppTheme.Light))
 		{ Application.Current.UserAppTheme = AppTheme.Dark; }
