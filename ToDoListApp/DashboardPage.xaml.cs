@@ -14,8 +14,6 @@ namespace ToDoListApp.Views
         public DashboardPage()
         {   
             InitializeComponent();
-
-            //This gets the list with all the items in it
             Task.Run(async () => TaskList.ItemsSource = await _DBService.GetTDItemsAsync());
             
 
