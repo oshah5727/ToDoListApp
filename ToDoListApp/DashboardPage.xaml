@@ -4,13 +4,34 @@
              x:Class="ToDoListApp.Views.DashboardPage"
              Title="Dashboard">
 
-    <Grid RowDefinitions="Auto, *">
-        <!-- Quick Add Section -->
-        <Button Grid.Column="2"
+    <Grid RowDefinitions="Auto, Auto, *">
+        <!-- Navigation Bar -->
+        <Grid Grid.Row="0" 
+              BackgroundColor="{StaticResource Primary}" 
+              ColumnDefinitions="*, Auto, Auto"
+              Padding="10">
+            <Label Text="ToDo List" 
+                   FontSize="20" 
+                   FontAttributes="Bold" 
+                   TextColor="White"
+                   VerticalOptions="Center" />
+
+            <Button Grid.Column="1"
                     Text="Account"
                     Margin="0,0,10,0"
+                    BackgroundColor="Transparent"
+                    TextColor="White"
                     Clicked="OnAccountClicked" />
-        <Frame Grid.Row="0" 
+
+            <Button Grid.Column="2"
+                    Text="Settings"
+                    BackgroundColor="Transparent"
+                    TextColor="White"
+                    Clicked="Settings_Clicked" />
+        </Grid>
+
+        <!-- Quick Add Section -->
+        <Frame Grid.Row="1" 
                Margin="15"
                Padding="15"
                CornerRadius="10"
@@ -26,13 +47,12 @@
                 <Button Text="+"
                         FontSize="18"
                         WidthRequest="50"
-                        Command="{Binding QuickAddCommand}"
                         Grid.Column="1" />
             </Grid>
         </Frame>
 
         <!-- Dashboard Content -->
-        <ScrollView Grid.Row="1">
+        <ScrollView Grid.Row="2">
             <VerticalStackLayout Spacing="15" Padding="15">
                 <!-- Today's Tasks Section -->
                 <Frame BorderColor="{StaticResource Primary}"
@@ -111,10 +131,6 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-
-                        <!--<Button Text="View All Tasks" 
-                                Clicked="OnViewAllTasksClicked"
-                                HorizontalOptions="End" />-->
                     </VerticalStackLayout>
                 </Frame>
 
@@ -150,12 +166,7 @@
                         </VerticalStackLayout>
                     </Grid>
                 </Frame>
-                <Button Text="Settings" Clicked="Settings_Clicked"></Button>
             </VerticalStackLayout>
-            
-           
-        </ScrollView> 
-
-        <!-- Floating Action Button for adding new tasks -->
+        </ScrollView>
     </Grid>
 </ContentPage>

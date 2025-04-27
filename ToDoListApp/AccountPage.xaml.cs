@@ -6,51 +6,116 @@ public partial class AccountPage : ContentPage
 {
     private LocalDBService _db;
     private User _currentUser;
+
     public AccountPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _db = new LocalDBService();
         LoadUser();
     }
 
     private async void LoadUser()
     {
-        _currentUser = await _db.GetUserAsync();
+        try
+        {
+            // Get user from database
+            _currentUser = await _db.GetUserAsync();
 
-        if (_currentUser != null)
-        {
-            UsernameEntry.Text = _currentUser.Username;
-            EmailEntry.Text = _currentUser.Email;
-            PasswordEntry.Text = _currentUser.Password;
+            if (_currentUser == null)
+            {
+                // Ensure _currentUser is always initialized
+                _currentUser = new User();
+            }
+
+            // Assign values to UI safely
+            CurrentUsername.Text = _currentUser.Username ?? "Default Username";
+            CurrentEmail.Text = _currentUser.Email ?? "Default Email";
+            CurrentPassword.Text = _currentUser.Password != null
+                ? new string('*', _currentUser.Password.Length)
+                : "***";
+            ProfilePicture.Source = string.IsNullOrEmpty(_currentUser.ProfilePicturePath)
+                ? "profile_placeholder.png"
+                : _currentUser.ProfilePicturePath;
         }
-        else
+        catch (Exception ex)
         {
-            _currentUser = new User(); 
+            // Display error message if loading fails
+            await DisplayAlert("Error", $"Failed to load user data: {ex.Message}", "OK");
         }
     }
 
     private async void OnSaveClicked(object sender, EventArgs e)
     {
-        _currentUser.Username = UsernameEntry.Text;
-        _currentUser.Email = EmailEntry.Text;
-        _currentUser.Password = PasswordEntry.Text;
+        try
+        {
+            // Update only non-empty fields
+            if (!string.IsNullOrEmpty(UsernameEntry.Text))
+            {
+                _currentUser.Username = UsernameEntry.Text;
+            }
+            if (!string.IsNullOrEmpty(EmailEntry.Text))
+            {
+                _currentUser.Email = EmailEntry.Text;
+            }
 
-        await _db.SaveUserAsync(_currentUser);
-        await DisplayAlert("Saved", "Account information saved.", "OK");
+            if (!string.IsNullOrEmpty(PasswordEntry.Text))
+            {
+                _currentUser.Password = PasswordEntry.Text;
+            }
+
+            await _db.SaveUserAsync(_currentUser); // Save updates to database
+            await DisplayAlert("Saved", "Account information updated.", "OK");
+            LoadUser(); // Refresh displayed user data
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Failed to save user data: {ex.Message}", "OK");
+        }
     }
 
     private async void OnDeleteClicked(object sender, EventArgs e)
     {
-        if (_currentUser?.ID != 0)
+        try
         {
-            await _db.DeleteUserAsync(_currentUser);
-            await DisplayAlert("Deleted", "Account has been deleted.", "OK");
+            // Confirm account deletion
+            bool confirm = await DisplayAlert("Delete Account", "Are you sure you want to delete your account?", "Yes", "No");
+            if (confirm)
+            {
+                if (_currentUser?.ID != 0)
+                {
+                    await _db.DeleteUserAsync(_currentUser);
+                    await DisplayAlert("Deleted", "Your account has been deleted.", "OK");
 
-            UsernameEntry.Text = string.Empty;
-            EmailEntry.Text = string.Empty;
-            PasswordEntry.Text = string.Empty;
+                    // Reset data and refresh UI
+                    _currentUser = new User();
+                    LoadUser();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Failed to delete user account: {ex.Message}", "OK");
+        }
+    }
 
-            _currentUser = new User();
+    private async void OnChangePictureClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            var result = await FilePicker.PickAsync(new PickOptions
+            {
+                PickerTitle = "Select a Profile Picture"
+            });
+
+            if (result != null)
+            {
+                _currentUser.ProfilePicturePath = result.FullPath;
+                ProfilePicture.Source = result.FullPath; // Update UI immediately
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Failed to update profile picture: {ex.Message}", "OK");
         }
     }
 }
