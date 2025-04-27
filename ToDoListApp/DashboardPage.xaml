@@ -47,7 +47,8 @@
                 <Button Text="+"
                         FontSize="18"
                         WidthRequest="50"
-                        Grid.Column="1" />
+                        Grid.Column="1" 
+                        Clicked="OnTaskAddClick"/>
             </Grid>
         </Frame>
 

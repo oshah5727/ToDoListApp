@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoListApp.Models;
 using ToDoListApp.Services;
@@ -83,6 +84,21 @@ namespace ToDoListApp.Views
             }
         }
 
+        private async Task OnTaskAddClick(object sender, EventArgs e)
+        {
+            var taskName = QuickAddEntry.Text;
+
+            if (string.IsNullOrWhiteSpace(taskName))
+            {
+                await DisplayAlert("Error", "Task name cannot be empty", "OK");
+                return;
+            }
+
+            // Show the AddTaskPopup
+            await Navigation.PushAsync(new AddTaskView(taskName));
+ 
+
+        }
     }
 
     public class DashboardViewModel : BindableObject
