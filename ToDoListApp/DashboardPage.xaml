@@ -9,32 +9,56 @@
             <Label Text="ToDo List" 
                    FontSize="20" 
                    FontAttributes="Bold" 
-                   TextColor="purple"
                    VerticalOptions="Center" />
 
             <Button 
                     Text="Account"
                     Margin="0,0,10,0"
-                    BackgroundColor="Purple"
                     TextColor="White"
                     Clicked="OnAccountClicked" />
 
             <Button 
                     Text="Settings"
-                    BackgroundColor="Purple"
                     TextColor="White"
                     Clicked="Settings_Clicked"/>
             <Button
                     Text="Add"
-                    BackgroundColor="Purple"
                     TextColor="White"
                     Clicked="AddButton_Clicked"/>
       
 
 
             <ScrollView>
-                <ListView x:Name="TaskList">
+                <ListView x:Name="TaskList" ItemsSource="{Binding TDItem}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox IsChecked="{Binding IsCompleted, Mode=TwoWay}" Grid.Column="0" VerticalOptions="Center"/>
+                            <!-- Content -->
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="{Binding Name}" FontSize="20" />
+                                <Label Grid.Row="1" Text="{Binding Description}" FontSize="18"/>
+                                <Label Grid.Row="2" Text="{Binding Date}" FontSize="18"  />
+                                <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="End">
+                                    <Button Text="Edit" Clicked="OnEditClicked" ></Button>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
 
+
+                </ListView.ItemTemplate>
+               
 
 
                 </ListView>

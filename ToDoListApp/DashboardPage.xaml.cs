@@ -48,6 +48,12 @@ namespace ToDoListApp.Views
             }
         }
 
+        private async void OnEditClicked(object sender, EventArgs e)
+        {
+            var item = (sender as MenuItem).CommandParameter as TDItem;
+            await Navigation.PushAsync(new EditTaskForm(item));
+        }
+
 
 
 

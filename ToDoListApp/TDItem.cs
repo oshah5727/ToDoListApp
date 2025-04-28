@@ -20,5 +20,7 @@ namespace ToDoListApp
 
         [Column("date")]
         public string Date { get; set; }
+
+        public Boolean IsCompleted { get; set; }
     }
 }
