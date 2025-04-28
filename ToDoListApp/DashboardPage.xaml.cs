@@ -9,21 +9,15 @@ namespace ToDoListApp.Views
 {
     public partial class DashboardPage : ContentPage
     {
-         readonly LocalDBService _DBService;
+        LocalDBService _DBService;
 
         public DashboardPage()
-        {   
+        {
+            _DBService = new LocalDBService();
             InitializeComponent();
             Task.Run(async () => TaskList.ItemsSource = await _DBService.GetTDItemsAsync());
             
-
-
-
-
-
         }
-
-
 
         private async void OnAccountClicked(object sender, EventArgs e)
         {
