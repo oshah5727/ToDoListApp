@@ -14,7 +14,7 @@ public partial class NewTaskForm : ContentPage
 
 	}
 
-    private async Task Button_Clicked(object sender, EventArgs e)
+    private async void AddButton_Clicked(object sender, EventArgs e)
     {
         TDItem CreatedItem = new TDItem();
         CreatedItem.Name = NameEntry.Text;
@@ -23,4 +23,11 @@ public partial class NewTaskForm : ContentPage
         Task.Run(async () => { await _DBService.Create(CreatedItem); });
         Navigation.PushAsync(new DashboardPage());
     }
+
+    private async void CancelButton_Clicked(object sender, EventArgs e)
+    {
+
+        Navigation.PushAsync(new DashboardPage());
+    }
+
 }

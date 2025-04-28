@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.Windows.Input;
 using ToDoListApp.Models;
 using ToDoListApp.Services;
+using ToDoListApp.Views;
 using SQLite;
+
 namespace ToDoListApp.Views
 
 {
@@ -24,6 +26,9 @@ namespace ToDoListApp.Views
             // Navigate to account page
             await Navigation.PushAsync(new AccountPage());
         }
+
+        private async void AddButton_Clicked(object sender, EventArgs e)
+        { await Navigation.PushAsync(new NewTaskForm()); }
 
         private async void Settings_Clicked(object sender, EventArgs e)
         {
