@@ -6,16 +6,13 @@
     <ScrollView>
         <StackLayout Padding="20" Spacing="20">
 
-            <!-- Profile Picture Section -->
             <Frame CornerRadius="100" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center" BackgroundColor="LightGray">
                 <Image x:Name="ProfilePicture" Source="profile_placeholder.png" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Frame>
             <Button Text="Change Profile Picture" Clicked="OnChangePictureClicked" />
 
-            <!-- Account Information Title -->
             <Label Text="Account Information" FontSize="24" HorizontalOptions="Center" />
 
-            <!-- Display Current Credentials -->
             <Label Text="Username:" FontAttributes="Bold" />
             <Label x:Name="CurrentUsername" Text="Default Username" />
 
@@ -25,7 +22,6 @@
             <Label Text="Password:" FontAttributes="Bold" />
             <Label x:Name="CurrentPassword" Text="***" />
 
-            <!-- Update Credentials -->
             <Label Text="Update Username:" FontAttributes="Bold" />
             <Entry x:Name="UsernameEntry" Placeholder="Update username" />
 
@@ -35,7 +31,6 @@
             <Label Text="Update Password:" FontAttributes="Bold" />
             <Entry x:Name="PasswordEntry" Placeholder="Update password" IsPassword="True" />
 
-            <!-- Buttons -->
             <Button Text="Save Changes" Clicked="OnSaveClicked" BackgroundColor="Green" TextColor="White" />
             <Button Text="Delete Account" Clicked="OnDeleteClicked" BackgroundColor="Red" TextColor="White"/>
         </StackLayout>

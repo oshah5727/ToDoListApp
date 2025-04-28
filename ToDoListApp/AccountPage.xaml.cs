@@ -18,16 +18,14 @@ public partial class AccountPage : ContentPage
     {
         try
         {
-            // Get user from database
             _currentUser = await _db.GetUserAsync();
 
             if (_currentUser == null)
             {
-                // Ensure _currentUser is always initialized
+               
                 _currentUser = new User();
             }
 
-            // Assign values to UI safely
             CurrentUsername.Text = _currentUser.Username ?? "Default Username";
             CurrentEmail.Text = _currentUser.Email ?? "Default Email";
             CurrentPassword.Text = _currentUser.Password != null
@@ -39,7 +37,6 @@ public partial class AccountPage : ContentPage
         }
         catch (Exception ex)
         {
-            // Display error message if loading fails
             await DisplayAlert("Error", $"Failed to load user data: {ex.Message}", "OK");
         }
     }
@@ -48,7 +45,6 @@ public partial class AccountPage : ContentPage
     {
         try
         {
-            // Update only non-empty fields
             if (!string.IsNullOrEmpty(UsernameEntry.Text))
             {
                 _currentUser.Username = UsernameEntry.Text;
@@ -63,9 +59,9 @@ public partial class AccountPage : ContentPage
                 _currentUser.Password = PasswordEntry.Text;
             }
 
-            await _db.SaveUserAsync(_currentUser); // Save updates to database
+            await _db.SaveUserAsync(_currentUser); 
             await DisplayAlert("Saved", "Account information updated.", "OK");
-            LoadUser(); // Refresh displayed user data
+            LoadUser(); 
         }
         catch (Exception ex)
         {
@@ -77,7 +73,6 @@ public partial class AccountPage : ContentPage
     {
         try
         {
-            // Confirm account deletion
             bool confirm = await DisplayAlert("Delete Account", "Are you sure you want to delete your account?", "Yes", "No");
             if (confirm)
             {
@@ -86,7 +81,6 @@ public partial class AccountPage : ContentPage
                     await _db.DeleteUserAsync(_currentUser);
                     await DisplayAlert("Deleted", "Your account has been deleted.", "OK");
 
-                    // Reset data and refresh UI
                     _currentUser = new User();
                     LoadUser();
                 }
@@ -110,7 +104,7 @@ public partial class AccountPage : ContentPage
             if (result != null)
             {
                 _currentUser.ProfilePicturePath = result.FullPath;
-                ProfilePicture.Source = result.FullPath; // Update UI immediately
+                ProfilePicture.Source = result.FullPath; 
             }
         }
         catch (Exception ex)

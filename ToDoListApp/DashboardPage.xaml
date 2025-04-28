@@ -28,7 +28,7 @@
                     BackgroundColor="Transparent"
                     TextColor="White"
                     Clicked="Settings_Clicked"/>
-            <Grid.Column="3"
+            <Button Grid.Column="3"
                     Text="Add"
                     BackgroundColor="Transparent"
                     TextColor="White"
