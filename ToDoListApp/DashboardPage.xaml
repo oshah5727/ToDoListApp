@@ -7,27 +7,31 @@
              Title="Dashboard">
 
     <VerticalStackLayout>
-   
+        <HorizontalStackLayout>
             <Label Text="ToDo List" 
-                   FontSize="20" 
-                   FontAttributes="Bold" 
-                   VerticalOptions="Center" />
+           FontSize="20" 
+           FontAttributes="Bold" 
+           HorizontalOptions="Start" />
 
             <Button 
-                    Text="Account"
-                    Margin="0,0,10,0"
-                    TextColor="White"
-                    Clicked="OnAccountClicked" />
+            Text="Account"
+            TextColor="White"
+            Clicked="OnAccountClicked"
+            />
 
             <Button 
-                    Text="Settings"
-                    TextColor="White"
-                    Clicked="Settings_Clicked"/>
+            Text="Settings"
+            TextColor="White"
+            Clicked="Settings_Clicked"
+            />
             <Button
-                    Text="Add"
-                    TextColor="White"
-                    Clicked="AddButton_Clicked"/>
+            Text="Add"
+            TextColor="White"
+            Clicked="AddButton_Clicked"
+            />
 
+        </HorizontalStackLayout>
+        
 
         <ListView x:Name="TaskListView"
           HasUnevenRows="True"
@@ -81,6 +85,7 @@
                                     Clicked="OnEditClicked"
                                     CommandParameter="{Binding .}"
                                     WidthRequest="70" />
+                                    <Button Text="Delete" Clicked="DeleteButton_Clicked"></Button>
                                 </StackLayout>
                             </Grid>
                         </Grid>

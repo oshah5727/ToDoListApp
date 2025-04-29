@@ -75,9 +75,22 @@ namespace ToDoListApp.Views
 
         //}
 
-        //private void DeleteButton_Clicked(object sender, EventArgs e)
-        //{
+        private void DeleteButton_Clicked(object sender, EventArgs e)
+        {
+            var button = (sender as Button);
+            var item = button?.CommandParameter as TDItem;
+            if (item == null) return;
+            bool confirm = true;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                confirm = DisplayAlert("Delete Task", "Are you sure you want to delete this task?", "Yes", "No").Result;
+                if (confirm)
+                {
+                    _DBService.Delete(item);
+                    LoadTasks();
+                }
+            });
 
-        //}
+        }
     }
 }

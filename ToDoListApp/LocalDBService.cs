@@ -36,6 +36,11 @@ namespace ToDoListApp
         {
             await _connection.UpdateAsync(tditem);
         }
+        
+        public async Task Delete(TDItem tditem)
+        {
+            await _connection.DeleteAsync(tditem);
+        }
         public async Task<User> GetUserAsync()
         {
             return await _connection.Table<User>().FirstOrDefaultAsync(); 
