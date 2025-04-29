@@ -5,6 +5,7 @@ using ToDoListApp.Models;
 using ToDoListApp.Services;
 using ToDoListApp.Views;
 using SQLite;
+using System.Threading.Tasks;
 
 namespace ToDoListApp.Views
 
@@ -75,20 +76,17 @@ namespace ToDoListApp.Views
 
         //}
 
-        private void DeleteButton_Clicked(object sender, EventArgs e)
+        private async void DeleteButtonClicked(object sender, EventArgs e)
         {
             var button = (sender as Button);
             var item = button?.CommandParameter as TDItem;
-            bool confirm = true;
-            Dispatcher.Dispatch( async() =>
-            {
-                confirm = DisplayAlert("Delete Task", "Are you sure you want to delete this task?", "Yes", "No").Result;
+            bool confirm = await DisplayAlert("Delete Task", "Are you sure you want to delete this task?", "Yes", "No");
+            //confirm = DisplayAlert("Delete Task", "Are you sure you want to delete this task?", "Yes", "No").Result;
                 if (confirm)
                 {
                     _DBService.Delete(item);
                     LoadTasks();
-                }
-            });
+                };
 
         }
     }

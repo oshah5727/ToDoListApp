@@ -86,7 +86,7 @@
                                     CommandParameter="{Binding .}"
                                     WidthRequest="70" />
                                     <Button Text="Delete" 
-                                            Clicked="DeleteButton_Clicked" 
+                                            Clicked="DeleteButtonClicked" 
                                             CommandParameter="{Binding .}" />
                                 </StackLayout>
                             </Grid>
