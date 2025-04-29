@@ -69,10 +69,15 @@ namespace ToDoListApp.Views
             }
         }
 
-        private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
+        //private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        //{
 
 
-        }
+        //}
+
+        //private void DeleteButton_Clicked(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

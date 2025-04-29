@@ -27,54 +27,67 @@
                     Text="Add"
                     TextColor="White"
                     Clicked="AddButton_Clicked"/>
-      
 
 
-            <ScrollView>
-            <ListView x:Name="TaskListView">
-                <ListView.ItemTemplate>
-                    <DataTemplate >
-                        <ViewCell>
-                            <StackLayout>
-                                <CheckBox CheckedChanged ="CheckBox_CheckedChanged"  IsChecked="{Binding IsCompleted}" />
-                                <Label Text="{Binding Name}" FontSize="18" />
-                                <Label Text="{Binding Description}" FontSize="14" />
-                                <Label Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy}'}" FontSize="12" />
-                                <Button Text="Edit" Clicked="OnEditClicked" MaximumWidthRequest="150" CommandParameter="{Binding .}" />
-
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <!--<ListView x:Name="TaskListDisplay" ItemsSource="{Binding TaskList}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="local:TDItem">
-                        <Grid Padding="15">
+        <ListView x:Name="TaskListView"
+          HasUnevenRows="True"
+          SeparatorVisibility="Default">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="3*" />
                             </Grid.ColumnDefinitions>
-                            <CheckBox IsChecked="{Binding IsCompleted}" Grid.Column="0" VerticalOptions="Center"/>
+
+                            <!-- Left Column: Checkbox -->
+                            <StackLayout Grid.Column="0"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center">
+                                <CheckBox IsChecked="{Binding IsCompleted}" />
+                            </StackLayout>
+
+                            <!-- Right Column: Task Details -->
                             <Grid Grid.Column="1">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label Grid.Row="0" Text="{Binding Name}" FontSize="20" TextColor="Black"/>
-                                <Label Grid.Row="1" Text="{Binding Description}" FontSize="18" TextColor="Black"/>
-                                <Label Grid.Row="2" Text="{Binding Date}" FontSize="18" TextColor="Black" />
-                                <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="End">
-                                    <Button Text="Edit" Clicked="OnEditClicked" />
+
+                                <Label Grid.Row="0"
+                               Text="{Binding Name}"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               LineBreakMode="TailTruncation" />
+
+                                <Label Grid.Row="1"
+                               Text="{Binding Description}"
+                               FontSize="14"
+                               LineBreakMode="TailTruncation" />
+
+                                <Label Grid.Row="2"
+                               Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy}'}"
+                               FontSize="12" />
+
+                                <!-- Edit button aligned to right -->
+                                <StackLayout Grid.Row="3"
+                                     Orientation="Horizontal"
+                                     HorizontalOptions="End"
+                                     VerticalOptions="Center">
+                                    <Button Text="Edit"
+                                    Clicked="OnEditClicked"
+                                    CommandParameter="{Binding .}"
+                                    WidthRequest="70" />
                                 </StackLayout>
                             </Grid>
                         </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
-        </ScrollView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 
     
