@@ -85,7 +85,9 @@
                                     Clicked="OnEditClicked"
                                     CommandParameter="{Binding .}"
                                     WidthRequest="70" />
-                                    <Button Text="Delete" Clicked="DeleteButton_Clicked"></Button>
+                                    <Button Text="Delete" 
+                                            Clicked="DeleteButton_Clicked" 
+                                            CommandParameter="{Binding .}" />
                                 </StackLayout>
                             </Grid>
                         </Grid>
