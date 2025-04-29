@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ToDoListApp"
              x:Class="ToDoListApp.Views.DashboardPage"
+             xmlns:model="clr-namespace:ToDoListApp"
              Title="Dashboard">
 
     <VerticalStackLayout>
@@ -29,16 +31,31 @@
 
 
             <ScrollView>
-                <ListView x:Name="TaskList" ItemsSource="{Binding TDItem}">
+            <ListView x:Name="TaskListView">
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate >
+                        <ViewCell>
+                            <StackLayout>
+                                <CheckBox CheckedChanged ="CheckBox_CheckedChanged"  IsChecked="{Binding IsCompleted}" />
+                                <Label Text="{Binding Name}" FontSize="18" />
+                                <Label Text="{Binding Description}" FontSize="14" />
+                                <Label Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy}'}" FontSize="12" />
+                                <Button Text="Edit" Clicked="OnEditClicked" MaximumWidthRequest="150" CommandParameter="{Binding .}" />
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<ListView x:Name="TaskListDisplay" ItemsSource="{Binding TaskList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:TDItem">
                         <Grid Padding="15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <CheckBox IsChecked="{Binding IsCompleted, Mode=TwoWay}" Grid.Column="0" VerticalOptions="Center"/>
-                            <!-- Content -->
+                            <CheckBox IsChecked="{Binding IsCompleted}" Grid.Column="0" VerticalOptions="Center"/>
                             <Grid Grid.Column="1">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -46,23 +63,18 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Label Grid.Row="0" Text="{Binding Name}" FontSize="20" />
-                                <Label Grid.Row="1" Text="{Binding Description}" FontSize="18"/>
-                                <Label Grid.Row="2" Text="{Binding Date}" FontSize="18"  />
+                                <Label Grid.Row="0" Text="{Binding Name}" FontSize="20" TextColor="Black"/>
+                                <Label Grid.Row="1" Text="{Binding Description}" FontSize="18" TextColor="Black"/>
+                                <Label Grid.Row="2" Text="{Binding Date}" FontSize="18" TextColor="Black" />
                                 <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="End">
-                                    <Button Text="Edit" Clicked="OnEditClicked" ></Button>
+                                    <Button Text="Edit" Clicked="OnEditClicked" />
                                 </StackLayout>
                             </Grid>
                         </Grid>
                     </DataTemplate>
-
-
                 </ListView.ItemTemplate>
-               
-
-
-                </ListView>
-            </ScrollView>
+            </ListView>-->
+        </ScrollView>
     </VerticalStackLayout>
 
     

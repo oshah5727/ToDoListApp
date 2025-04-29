@@ -7,8 +7,10 @@ namespace ToDoListApp;
 public partial class EditTaskForm : ContentPage
 {
     LocalDBService _DBService;
+    private TDItem _originalItem;
     public EditTaskForm(TDItem Item)
 	{
+        _originalItem = Item;
         _DBService = new LocalDBService();
         InitializeComponent();
         NameEntry.Text = Item.Name;
@@ -17,20 +19,20 @@ public partial class EditTaskForm : ContentPage
 
     }
 
-    //private async void SaveButton_Clicked(object sender, EventArgs e)
-    //{
-    //    TDItem NewItem = Item;
-    //    NewItem.Name = NameEntry.Text;
-    //    NewItem.Description = DescriptionEntry.Text;
-    //    NewItem.Date = DateEntry.Text;
-    //    Task.Run(async () => { await _DBService.Update(NewItem, Item); });
-    //    Navigation.PushAsync(new DashboardPage());
-    //}
-
     private async void CancelButton_Clicked(object sender, EventArgs e)
     {
 
         Navigation.PushAsync(new DashboardPage());
     }
 
+    private async void SaveButton_Clicked(object sender, EventArgs e)
+    {
+        _originalItem.Name = NameEntry.Text;
+        _originalItem.Description = DescriptionEntry.Text;
+        _originalItem.Date = DateEntry.Text;
+        _DBService.Update(_originalItem);
+        await Navigation.PopAsync();
+        //Navigation.PushAsync(new DashboardPage());
+
+    }
 }

@@ -12,13 +12,24 @@ namespace ToDoListApp.Views
     public partial class DashboardPage : ContentPage
     {
         LocalDBService _DBService;
-
+        public List<TDItem> TaskList;
         public DashboardPage()
         {
-            _DBService = new LocalDBService();
             InitializeComponent();
-            Task.Run(async () => TaskList.ItemsSource = await _DBService.GetTDItemsAsync());
-            
+            _DBService = new LocalDBService();
+            //Task.Run(async () => TaskListDisplay.ItemsSource = await _DBService.GetTDItemsAsync());
+            //BindingContext = this;
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            LoadTasks();
+        }
+        private void LoadTasks()
+        {
+            TaskList = _DBService.GetTDItemsAsync().Result;
+            TaskListView.ItemsSource = null;
+            TaskListView.ItemsSource = TaskList;
         }
 
         private async void OnAccountClicked(object sender, EventArgs e)
@@ -50,15 +61,18 @@ namespace ToDoListApp.Views
 
         private async void OnEditClicked(object sender, EventArgs e)
         {
-            var item = (sender as MenuItem).CommandParameter as TDItem;
-            await Navigation.PushAsync(new EditTaskForm(item));
+            var button = (sender as Button);
+            var item = button?.CommandParameter as TDItem;
+            if (item != null)
+            {
+                await Navigation.PushAsync(new EditTaskForm(item));
+            }
         }
 
+        private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
 
 
-
-
-
-
+        }
     }
 }

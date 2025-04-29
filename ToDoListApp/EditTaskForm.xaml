@@ -10,7 +10,7 @@
         <Entry x:Name="DescriptionEntry"/>
         <Label Text="Date"/>
         <Entry x:Name="DateEntry"/>
-        <Button Text="Save"/>
+        <Button Text="Save" Clicked="SaveButton_Clicked"/>
         <Button Text="Cancel" Clicked="CancelButton_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

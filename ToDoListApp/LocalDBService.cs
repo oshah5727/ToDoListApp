@@ -23,7 +23,8 @@ namespace ToDoListApp
 
         public async Task<List<TDItem>> GetTDItemsAsync()
         { 
-            return await _connection.Table<TDItem>().ToListAsync(); 
+            return Task.Run(() => _connection.Table<TDItem>().ToListAsync()).Result;
+            //return await _connection.Table<TDItem>().ToListAsync(); 
         }
 
         public async Task Create(TDItem tditem)
